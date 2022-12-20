@@ -1,0 +1,9 @@
+from bisect import bisect, insort
+class Solution(object):
+    def reversePairs(self, nums):
+        lens, running_nums = [0]*len(nums), []
+        for i in xrange(len(nums)):
+            lens[i] = len(running_nums) - bisect(running_nums, 2*nums[i])
+            insort(running_nums, nums[i])
+        
+        return sum(lens)
